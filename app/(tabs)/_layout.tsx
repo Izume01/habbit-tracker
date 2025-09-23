@@ -1,35 +1,48 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+import { Tabs } from "expo-router";
 
+export default function TabsLayout() {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+    <Tabs screenOptions={{
+      headerStyle: { backgroundColor: '#f5f5f5 ' },
+      headerShadowVisible: false,
+      tabBarStyle: {
+        backgroundColor: '#f5f5f5',
+        borderTopColor: '#f5f5f5',
+        borderTopWidth: 0,
+        elevation: 0,
+        shadowOpacity: 0,
+      },
+      tabBarActiveTintColor: '#8130ceff',
+      tabBarInactiveTintColor: '#999999',
+    }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: "Today's Habbits",
+          tabBarIcon: ({ color, size, focused }) => {
+            return <MaterialCommunityIcons name={focused ? "home" : "home-outline"} color={color} size={size} />
+          }
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="streaks"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
+          title: "Streaks",
+          tabBarIcon: ({ color, size }) =>
+            <MaterialCommunityIcons name="chart-arc" color={color} size={size} />
+        }} />
+
+        <Tabs.Screen
+        name="add-task"
+        options={{
+          title: "Add Task",
+          tabBarIcon: ({ color, size }) =>
+            <MaterialCommunityIcons name="plus-circle" color={color} size={size} />
+        }} />
     </Tabs>
+    
   );
 }
