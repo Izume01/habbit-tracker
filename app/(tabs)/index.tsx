@@ -430,6 +430,7 @@ const makeStyles = (theme: any) => {
       alignItems: 'center',
       marginTop: 8,
     },
+    
     streakContainer: {
       flexDirection: 'row',
       alignItems: 'center',
